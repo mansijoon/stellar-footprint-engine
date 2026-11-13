@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  app:
+    image: ://microsoft.com
+    volumes:
+      - ../..:/workspaces:cached
+    command: sleep infinity
+    network_mode: service:redis
+    environment:
+      - REDIS_URL=redis://localhost:6379
+
+  redis:
+    image: redis:7-alpine
+    restart: unless-stopped
